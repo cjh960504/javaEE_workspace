@@ -22,6 +22,7 @@
 	String title = request.getParameter("title");//제목
 	String content = request.getParameter("content");//내용
 	
+	
 	/*out.print("<br>");
 	out.print("author : "+author);
 	out.print("<br>");

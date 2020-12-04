@@ -53,30 +53,39 @@ public class BoardContent extends Page{
 		
 		bt_edit.addActionListener((e)->{
 			if(JOptionPane.showConfirmDialog(BoardContent.this, "정말 수정하시겠습니까?")==JOptionPane.OK_OPTION) {
-				notice.setAuthor(t_author.getText());
-				notice.setTitle(t_title.getText());
-				notice.setContent(area.getText());
-				int result = noticeDAO.update(notice);
-				if(result == 0) {
-					JOptionPane.showMessageDialog(BoardContent.this, "수정 실패!");
-				}else {
-					JOptionPane.showMessageDialog(BoardContent.this, "수정 성공!");
-				}
+				edit();
 			}
 		});
 		bt_del.addActionListener((e)->{
 			if(JOptionPane.showConfirmDialog(BoardContent.this, "정말 삭제하시겠습니까?")==JOptionPane.OK_OPTION) {
-				int result = noticeDAO.delete(notice.getNotice_id());
-				if(result==0) {
-					JOptionPane.showMessageDialog(BoardContent.this, "삭제 실패!");
-				}else {
-					JOptionPane.showMessageDialog(BoardContent.this, "삭제 성공!");
-					BoardList boardList = (BoardList)boardMain.pageList[Pages.BoardList.ordinal()];
-					boardList.getList();
-					boardMain.showPage(Pages.BoardList.ordinal());
-				}
+				del();
 			}
 		});
+	}
+	public void edit() {
+		//DAO를 이용하여 수정작업수행
+		//작성자, 제목, 내용만 교체
+		notice.setAuthor(t_author.getText());
+		notice.setTitle(t_title.getText());
+		notice.setContent(area.getText());
+		int result = noticeDAO.update(notice);
+		if(result == 0) {
+			JOptionPane.showMessageDialog(BoardContent.this, "수정 실패!");
+		}else {
+			JOptionPane.showMessageDialog(BoardContent.this, "수정 성공!");
+		}
+	}
+	
+	public void del() {
+		int result = noticeDAO.delete(notice.getNotice_id());
+		if(result==0) {
+			JOptionPane.showMessageDialog(BoardContent.this, "삭제 실패!");
+		}else {
+			JOptionPane.showMessageDialog(BoardContent.this, "삭제 성공!");
+			BoardList boardList = (BoardList)boardMain.pageList[Pages.BoardList.ordinal()];
+			boardList.getList();
+			boardMain.showPage(Pages.BoardList.ordinal());
+		}
 	}
 	
 	//컴포넌트에 데이터 채워넣기

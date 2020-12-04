@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=utf-8"%>
 <%@page import="board.model.NoticeDAO"%>
+<%@ page contentType="text/html;charset=utf-8"%>
 <%@page import="board.model.Notice"%>
 <%@ include file="/inc/lib.jsp"%>
 <%
@@ -18,7 +18,7 @@
 	notice.setContent(content);
 	
 	int result = noticeDAO.update(notice);
-	if(result==0){
+	if(result==0){ 
 		out.print(getMsgBack("수정 실패!"));
 	}else{
 		out.print(getMsgURL("수정 성공!", "/board/detail.jsp?notice_id="+notice_id));

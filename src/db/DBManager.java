@@ -13,7 +13,6 @@ public class DBManager{
 	String url="jdbc:mariadb://localhost:3306/db1202";
 	String user="root";
 	String password="1234";
-	String sql = "select * from notice";
 	
 	//접속 개체 얻기 
 	public Connection getConnection(){
