@@ -1,12 +1,10 @@
-<%@page import="board.model.ImageBoard"%>
-<%@page import="board.model.ImageBoardDAO"%>
+<%@page import="board.model.QnADAO"%>
+<%@page import="board.model.QnA"%>
 <%@ page contentType="text/html;charset=utf-8"%>
-<%@page import="board.model.Notice"%>
-<%@page import="board.model.NoticeDAO"%>
 <%
-	String board_id = request.getParameter("board_id");
-	ImageBoardDAO dao = new ImageBoardDAO();
-	ImageBoard board = dao.select(Integer.parseInt(board_id));
+	String qna_id = request.getParameter("qna_id");
+	QnADAO dao = new QnADAO();
+	QnA qna = dao.select(Integer.parseInt(qna_id));
 %>
 <!DOCTYPE html>
 <html>
@@ -54,6 +52,7 @@ input[type=image] {
 	width:100%
 }
 </style>
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 /*
@@ -63,8 +62,10 @@ input[type=image] {
 */
 
 	$(function(){
+		CKEDITOR.replace( 'subject' );//textarea에 부여한 id를 넣음 (에디터처리)
+		
 		$($("input[type='button']")[0]).click(function(){//목록으로
-			location.href="/imageboard/list.jsp";
+			location.href="/qna/list.jsp";
 		});
 		$($("input[type='button']")[1]).click(function(){//수정요청
 			if(confirm("수정하시겠어요?")){
@@ -95,26 +96,18 @@ input[type=image] {
 
 <div class="container">
   <form>
-	<input type="hidden" name="board_id" value=<%=board_id%>>
-	<input type="hidden" name="filename" value=<%=board.getFilename()%>>
+	<input type="hidden" name="board_id" value=<%=qna_id%>>
 	
     <label for="fname">Name</label>
-    <input type="text" id="fname" name="author" value="<%=board.getAuthor()%>">
+    <input type="text" id="fname" name="writer" value="<%=qna.getWriter()%>">
 
     <label for="lname">Title</label>
-    <input type="text" id="lname" name="title" value="<%=board.getTitle()%>">
+    <input type="text" id="lname" name="title" value="<%=qna.getTitle()%>">
 	
-	<label for="la_image">Image</label>
-	<div><input type="image" src="/data/<%=board.getFilename()%>"></div>
-
     <label for="subject">Content</label>
-    <textarea id="subject" name="content" style="height:200px"><%=board.getContent()%></textarea>
-	
-	<!-- 만일 이미지를 선택하면 이미지를 교체해야한다. 교체하지 않으면 db에 기존 파일명 유지 -->
-	<input type="file" name="photo">
+    <textarea id="subject" name="content" style="height:200px"><%=qna.getContent()%></textarea>
 	
 	<p>
-	
 	<input type="button" value="목록으로">
 	<input type="button" value="수정하기">
 	<input type="button" value="삭제하기">

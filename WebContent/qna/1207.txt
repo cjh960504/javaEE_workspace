@@ -1,0 +1,50 @@
+create table animal(
+idx int auto_increment
+,category varchar(30)
+,name varchar(30)
+,rank int
+,primary key(idx)
+)default character set utf8;
+
+insert into animal(category,name,rank) values('조류','참새',5);
+insert into animal(category,name,rank) values('포유류','고양이',3);
+insert into animal(category,name,rank) values('파충류','뱀',9);
+insert into animal(category,name,rank) values('어류','상어',12);
+insert into animal(category,name,rank) values('포유류','치타',2);
+insert into animal(category,name,rank) values('양서류','개구리',8);
+insert into animal(category,name,rank) values('파충류','도마뱀',4);
+insert into animal(category,name,rank) values('곤충','메뚜기',6);
+insert into animal(category,name,rank) values('양서류','맹꽁이',10);
+insert into animal(category,name,rank) values('조류','독수리',1);
+insert into animal(category,name,rank) values('어류','참치',11);
+insert into animal(category,name,rank) values('포유류','고래',7);
+
+
+답변 게시판 -> 일반 게시판에 그룹할 수 있는 컬럼 有!!
+	   (같은 종류끼리 묶기 위함 숙주 글의 pk)
+	  -> 답변간의 순서 (rank)
+	  -> 어떤글의 대한 답변인지(depth=답변받는 주체의 rank+1) 
+
+create table qna(
+qna_id int primary key auto_increment
+, writer varchar(20)
+, title varchar(100)
+, content text
+, regdate timestamp default now()
+, hit int default 0
+, team int  
+, rank int default 0
+, depth int default 0
+)default character set utf8;
+
+team 숙주 글 pk, rank 순서/최초는 0, depth 어떤 글에 대한 답글인지/최초는 0
+
+1. 기존에 내가 본 글보다 rank가 큰 글의 rank는 모두 1씩 증가되시오!!(공간확보)
+= update qna rank=rank+1 where team=내본글team and rank>내본글rank
+2. 빈 공간을 내가 차지!
+= insert into qna(~, team, rank, depth) values(내본team, 내본rank+1, 내본depth+1)
+
+클라이언트가 발생시킨 시퀀스를 가져와서 내가 방금 넣은 pk처리!!
+-> curval(너의 세션) : 동시성 제어(Oracle)
+-> last_insert_id (MySQL)
+update qna set team=(select last_insert_id()) where qna_id=(select last_insert_id())

@@ -1,4 +1,4 @@
-  <%@ page contentType="text/html;charset=utf-8"%>
+<%@ page contentType="text/html;charset=utf-8"%>
 <%!
 	//앞으로 재사용성이 높은 jsp코드를 이 파일에 메서드로 모아놓겠다!!
 

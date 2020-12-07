@@ -91,9 +91,17 @@ public class ImageBoardDAO {
 				board.setFilename(rs.getString("filename"));
 				board.setRegdate(rs.getString("regdate"));
 				board.setHit(rs.getInt("hit"));
+				sql = "update imageboard set hit=hit+1 where board_id=?";
+
+				//조회수 처리
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, board_id);
+				pstmt.executeUpdate();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			dbManager.release(con, pstmt, rs);
 		}
 		
 		return board;
@@ -103,7 +111,7 @@ public class ImageBoardDAO {
 	public int update(ImageBoard imageBoard) {
 		Connection con=null;
 		PreparedStatement pstmt = null;
-		String sql ="update imageboard set author=?, title=?, content=? where board_id=?";
+		String sql ="update imageboard set author=?, title=?, content=?, filename=? where board_id=?";
 		int result = 0;
 		con = dbManager.getConnection();
 		
@@ -112,10 +120,13 @@ public class ImageBoardDAO {
 			pstmt.setString(1, imageBoard.getAuthor());
 			pstmt.setString(2, imageBoard.getTitle());
 			pstmt.setString(3, imageBoard.getContent());
-			pstmt.setInt(4, imageBoard.getBoard_id());
+			pstmt.setString(4, imageBoard.getFilename());
+			pstmt.setInt(5, imageBoard.getBoard_id());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			dbManager.release(con, pstmt);
 		}
 		return result;
 	}
@@ -133,6 +144,8 @@ public class ImageBoardDAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			dbManager.release(con, pstmt);
 		}
 		return result;
 	}

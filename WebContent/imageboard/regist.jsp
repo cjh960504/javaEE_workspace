@@ -45,6 +45,7 @@ int maxSize=1024*1024*3; //3MB
 			String destFile = saveDir+"/"+newName;
 			File file = new File(destFile);
 			item.write(file);//물리적 저장시점!
+			
 			out.print("업로드 완료");
 			board.setFilename(newName);
 		}
