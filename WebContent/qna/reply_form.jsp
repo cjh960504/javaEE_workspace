@@ -1,4 +1,12 @@
 <%@ page contentType="text/html;charset=utf-8"%>
+<%
+	//상세보기 페이지의 히든을 통해 전송된 파라미터 중,
+	//team, rank, depth를 다시 현재 페이지의 히든에 보관해두자
+	
+	String team = request.getParameter("team");//내본글 team
+	String rank = request.getParameter("rank");//내본글 rank
+	String depth = request.getParameter("depth");//내본글 depth
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +42,7 @@ input[type=button]:hover {
 
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: gray;
   padding: 20px;
 }
 </style>
@@ -51,13 +59,17 @@ input[type=button]:hover {
 		
 		CKEDITOR.replace( 'subject' );//textarea에 부여한 id를 넣음 (에디터처리)
 		
-		$("input[type='button']").click(function(){
+		$($("input[type='button']")[0]).click(function(){
 			//입력양식을 서버에 전송!
 			$("form").attr({
 				method:"post",
-				action:"/qna/regist.jsp"
+				action:"/qna/reply.jsp"
 			});
 			$("form").submit();//전송행위!!
+		});
+		
+		$($("input[type='button']")[1]).click(function(){
+			history.back();
 		});
 	});
 </script>
@@ -67,6 +79,10 @@ input[type=button]:hover {
 
 <div class="container">
   <form>
+   	<input type="hidden" name="team" value="<%=team%>">
+	<input type="hidden" name="rank" value="<%=rank%>">
+	<input type="hidden" name="depth" value="<%=depth%>">
+	
     <label for="la_writer">Name</label>
     <input type="text" id="la_writer" name="writer" placeholder="Your name..">
 
@@ -80,7 +96,8 @@ input[type=button]:hover {
 	<label for="la_photo"></label>
     <input type="file" id="la_photo" name="photo">
     
-    <input type="button" value="전송">
+    <input type="button" value="답글등록">
+    <input type="button" value="이전으로">
   </form>
 </div>
 <div style="text-align:center">

@@ -48,6 +48,18 @@ input[type=image]{
   width:100px;
  
 }
+
+img{
+box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
+}
+
+.del{
+	text-decoration: line-through;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -75,9 +87,18 @@ $(function(){
   <%QnA qna= list.get(i);%>
 	<tr>
 		<td><%=qna.getQna_id()%></td>
-		<td><a href="/qna/detail.jsp?qna_id=<%=qna.getQna_id()%>"><%=qna.getTitle()%></a></td>
+		<td>
+			<%if(qna.getDepth()>0){ %>
+				<img alt="" src="/images/reply.png" style="margin-left:<%=20*qna.getDepth()%>px">
+			<%} %>
+			<%if(qna.getIsdel()==0){ %>
+				<a href="/qna/detail.jsp?qna_id=<%=qna.getQna_id()%>"><%=qna.getTitle()%></a>
+			<%}else{%>
+				<a class="del">삭제된 글입니다.</a>
+			<% } %>
+		</td>
 		<td><%=qna.getWriter()%></td>
-		<td><%=qna.getRegdate()%></td>
+		<td><%=qna.getRegdate().substring(0, 10)%></td>
 		<td><%=qna.getHit()%></td>
 	</tr>
   <%}%>  

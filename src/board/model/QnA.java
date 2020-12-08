@@ -10,6 +10,16 @@ public class QnA {
 	private int team;
 	private int rank;
 	private int depth;
+	private int isdel;
+	
+	
+	public int getIsdel() {
+		return isdel;
+	}
+
+	public void setIsdel(int isdel) {
+		this.isdel = isdel;
+	}
 
 	public int getQna_id() {
 		return qna_id;

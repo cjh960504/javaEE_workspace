@@ -72,8 +72,7 @@ input[type=image] {
 				//입력양식을 서버에 전송!
 				$("form").attr({
 					method:"post",
-					enctype : "multipart/form-data", //이런식으로하면 수정, 삭제 같은 form으로 만들 수 있다!!
-					action:"/imageboard/edit.jsp"
+					action:"/qna/edit.jsp"
 				});
 				$("form").submit();//전송행위!!
 			}
@@ -82,21 +81,30 @@ input[type=image] {
 			if(confirm("삭제하시겠어요?")){
 				$("form").attr({
 					method:"post",
-					action:"/imageboard/delete.jsp"
+					action:"/qna/delete.jsp"
 				});
 				$("form").submit();//전송행위!!
 			}
+		});
+		$($("input[type='button']")[3]).click(function(){//답글 폼 요청
+				$("form").attr({
+					method:"post",
+					action:"/qna/reply_form.jsp"
+				});
+				$("form").submit();//전송행위!!
 		});
 	});
 </script>
 </head>
 <body>
 
-<h3>Contact Form</h3>
 
 <div class="container">
   <form>
-	<input type="hidden" name="board_id" value=<%=qna_id%>>
+	<input type="hidden" name="qna_id" value=<%=qna_id%>>
+	<input type="hidden" name="team" value="<%=qna.getTeam()%>">
+	<input type="hidden" name="rank" value="<%=qna.getRank()%>">
+	<input type="hidden" name="depth" value="<%=qna.getDepth()%>">
 	
     <label for="fname">Name</label>
     <input type="text" id="fname" name="writer" value="<%=qna.getWriter()%>">
@@ -106,11 +114,13 @@ input[type=image] {
 	
     <label for="subject">Content</label>
     <textarea id="subject" name="content" style="height:200px"><%=qna.getContent()%></textarea>
-	
+    
 	<p>
+
 	<input type="button" value="목록으로">
 	<input type="button" value="수정하기">
 	<input type="button" value="삭제하기">
+	<input type="button" value="답변달기">
 <!--     <input type="button" value="전송"> -->
   </form>
 </div>
