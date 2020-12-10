@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 이름으로 메모리 영역을 구분하는 법 namespace 중복되면 안된다 -->
+<mapper namespace="mybatis.config.Dept">
+	<!--
+	개발자는 Mybatis를 이용할 경우, 자바코드에서 쿼리문을 작성하지 않으며
+	수많은 jdbc관련 코드 또한 작성할 필요가 없고, 오직 쿼리문에만 집중하면 된다!
+	-->
+	<!--모든글 가져오기 -->
+	<!-- List는 자체적으로 만들어준뎨!!! -->
+	<select id="selectAll" resultType="emp.model.Dept">
+		select * from dept order by deptno asc
+	</select>
+	
+	<!-- 한건 가져오기 -->
+	<!-- paramertType : 파라미터자료형 -->
+	<!-- ?대신 #{파라미터명} -->
+	<select id="select" parameterType="int" resultType="emp.model.Dept">
+		select * from dept where deptno=#{deptno}
+	</select>
+	
+	<!-- 한건 등록 -->
+	<insert id="insert" parameterType="emp.model.Dept">
+		insert into deptno(dname, loc) values(#{dname}, #{loc})
+	</insert>
+	
+	<!-- 한건 수정 -->
+	<!-- 반드시 VO와 컬럼명이 일치해야함!! -->
+	<update id="update" parameterType="emp.model.Dept" >
+		update dept set dname=#{dname}, loc=#{loc} where deptno=#{deptno}
+	</update>
+	
+	<!-- 삭제하기 -->
+	<delete id="delete" parameterType="int">
+		delete from deptno where deptno=#{deptno}
+	</delete>
+</mapper>
