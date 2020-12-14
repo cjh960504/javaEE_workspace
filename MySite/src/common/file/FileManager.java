@@ -1,5 +1,7 @@
 package common.file;
 
+import java.io.File;
+
 public class FileManager {
 	//확장자만 추출하기
 	public static String getExtend(String path) {
@@ -8,7 +10,12 @@ public class FileManager {
 		String ext = path.substring(last+1, path.length());
 		return ext;
 	}
-	
+	//파일삭제
+	public static boolean deleteFile(String path) {
+		File file = new File(path);
+		boolean result = file.delete();
+		return result;
+	}
 //	//단위 테스트
 //	public static void main(String[] args) {
 //		String filename = "c:\\photo\\아무거나치는중.jpg";

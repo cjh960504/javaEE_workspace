@@ -1,3 +1,4 @@
+<%@page import="board.model.MyBatisBoardDAO"%>
 <%@page import="board.model.BoardDAO"%>
 <%@page import="common.file.FileManager"%>
 <%@page import="board.model.Board"%>
@@ -26,7 +27,8 @@ factory.setDefaultCharset("utf-8");
 
 ServletFileUpload upload = new ServletFileUpload(factory);
 List<FileItem> items = upload.parseRequest(request); //요청 객체로부터 업로드 정보 뽑기!!
-BoardDAO dao = new BoardDAO();
+//BoardDAO dao = new BoardDAO();
+MyBatisBoardDAO dao = new MyBatisBoardDAO();
 Board board = new Board();
 boolean flag = false;//업로드가 완료되었는지 여부를 알 수 있는 변수
 for (FileItem item : items) {
