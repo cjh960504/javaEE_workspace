@@ -1,5 +1,5 @@
 <%@page import="board.model.MyBatisBoardDAO"%>
-<%@page import="common.board.Pager"%>
+<%@page import="com.webapp1216.common.board.Pager"%>
 <%@page import="board.model.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="board.model.BoardDAO"%>
