@@ -1,30 +1,11 @@
-<%@page import="board.model.MyBatisBoardDAO"%>
+<%@page import="com.webappreview.board.model.Notice"%>
 <%@page import="com.webappreview.common.board.Pager"%>
-<%@page import="board.model.Board"%>
 <%@page import="java.util.List"%>
-<%@page import="board.model.BoardDAO"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
-	//BoardDAO dao = new BoardDAO();
-	MyBatisBoardDAO dao = new MyBatisBoardDAO();
-	List<Board> list = dao.selectAll();
+	List<Notice> list = (List<Notice>)session.getAttribute("noticeList");
 	Pager pager = new Pager();
 	pager.init(request, list); // 페이지 처리에 대한 계산!!
-	/*
-	int totalRecord = list.size();
-	int pageSize = 10;
-	int totalPage = (int)Math.ceil((float)totalRecord/pageSize);
-	int currentPage = 1;
-	if(request.getParameter("currentPage")!=null){
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-	}
-	int blockSize=10;
-	int firstPage = currentPage - (currentPage-1)%blockSize;
-	int lastPage = (firstPage+blockSize)-1;
-	int curPos = (currentPage-1)*pageSize;
-	int num = totalRecord-curPos;
-	*/
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -57,7 +38,6 @@ img{
 	<table>
 		<tr>
 			<th>No</th>
-			<th>이미지</th>
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
@@ -67,17 +47,16 @@ img{
 		<%int cusPos = pager.getCurPos(); %>
 		<%for(int i=0;i<pager.getPageSize();i++){ %>
 			<%if(num<1)break; %>
-				<%Board board = list.get(cusPos++); %>
+				<%Notice notice= list.get(cusPos++); %>
 				<tr>
 					<td><%=num-- %></td>
-					<td><img src="/data/<%=board.getFilename() %>"></td>
-					<td><a href="detail.jsp?board_id=<%=board.getBoard_id()%>"><%=board.getTitle() %></a></td>
-					<td><%=board.getWriter() %></td>
-					<td><%=board.getRegdate() %></td>
-					<td><%=board.getHit() %></td>
+					<td><a href="/board/detail?notice_id=<%=notice.getNotice_id()%>"><%=notice.getTitle() %></a></td>
+					<td><%=notice.getWriter() %></td>
+					<td><%=notice.getRegdate() %></td>
+					<td><%=notice.getHit() %></td>
 				</tr>
 		<%} %>
-		<tr>
+		  <tr>
 			<td colspan="6" style="text-align: center">
 			<%if(pager.getFirstPage()-1<=0){ %>
 				<a href="javascript:alert('처음페이지입니다.')">◀</a>
@@ -96,7 +75,7 @@ img{
 			<%} %>
 			</td>
 		</tr>
-		<tr>
+		 -<tr>
 			<td colspan="6">
 				<button type="button" onClick="location.href='regist_form.jsp'">글등록</button>
 			</td>
