@@ -1,9 +1,9 @@
-<%@page import="com.webapp1216.board.model.Notice"%>
+<%@page import="com.model2.notice.domain.Notice"%>
 <%@page import="common.board.Pager"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
-	List<Notice> list = (List<Notice>)session.getAttribute("noticeList");
+	List<Notice> list = (List<Notice>)request.getAttribute("noticeList");
 	Pager pager = new Pager();
 	pager.init(request, list); // 페이지 처리에 대한 계산!!
 %>
@@ -50,7 +50,7 @@ img{
 				<%Notice notice= list.get(cusPos++); %>
 				<tr>
 					<td><%=num-- %></td>
-					<td><a href="/board/detail?notice_id=<%=notice.getNotice_id()%>"><%=notice.getTitle() %></a></td>
+					<td><a href="/notice/detail.do?notice_id=<%=notice.getNotice_id()%>"><%=notice.getTitle() %></a></td>
 					<td><%=notice.getWriter() %></td>
 					<td><%=notice.getRegdate() %></td>
 					<td><%=notice.getHit() %></td>
