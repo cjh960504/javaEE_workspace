@@ -1,4 +1,4 @@
-<%@page import="com.model2.notice.domain.Notice"%>
+<%@page import="com.model2.domain.Notice"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
 	Notice notice = (Notice)request.getAttribute("notice");

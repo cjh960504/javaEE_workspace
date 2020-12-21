@@ -1,0 +1,14 @@
+{
+	"controller":{
+		"/notice/list.do":"com.webmvc.notice.controller.ListController",
+		"/notice/detail.do":"com.webmvc.notice.controller.DetailController",
+		"/notice/update.do":"com.webmvc.notice.controller.UpdateController",
+		"/notice/delete.do":"com.webmvc.notice.controller.DeleteController"
+	},
+	"view":{
+		"/view/notice/list":"/notice/list.jsp",
+		"/view/notice/detail":"/notice/detail.jsp",
+		"/view/notice/update":"/notice/detail.do",
+		"/view/notice/delete":"/notice/list.do"
+	}
+}

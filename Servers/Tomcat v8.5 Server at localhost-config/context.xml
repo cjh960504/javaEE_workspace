@@ -21,4 +21,6 @@
 		name="jdbc/mysql" global="jdbc/mysql" />
 	<ResourceLink type="javax.sql.DataSource"
 		name="jdbc/myreview" global="jdbc/myreview" />
+	<ResourceLink type="javax.sql.DataSource"
+		name="jdbc/mymvc" global="jdbc/mymvc" />
 </Context>

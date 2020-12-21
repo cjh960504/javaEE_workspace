@@ -28,6 +28,7 @@
 		<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="3000" name="jdbc/myoracle" password="lastuser" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="lastuser"/>
 		<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="3000" name="jdbc/mysql" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost/db1216" username="root"/>
 		<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="3000" name="jdbc/myreview" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost/db1216" username="root"/>
+		<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="3000" name="jdbc/mymvc" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost/db1216" username="root"/>
 	</GlobalNamingResources>
 
 	<!-- A "Service" is a collection of one or more "Connectors" that share 
@@ -110,7 +111,9 @@
 				<Context docBase="Practice" path="/Practice" reloadable="true" source="org.eclipse.jst.jee.server:Practice"/>
 				<Context docBase="ServletApp" path="/ServletApp" reloadable="true" source="org.eclipse.jst.jee.server:ServletApp"/>
 				<Context docBase="webapp1216" path="/webapp1216" reloadable="true" source="org.eclipse.jst.jee.server:webapp1216"/>
-			<Context docBase="webappreview" path="/webappreview" reloadable="true" source="org.eclipse.jst.jee.server:webappreview"/><Context docBase="MVCFrameWork" path="/MVCFrameWork" reloadable="true" source="org.eclipse.jst.jee.server:MVCFrameWork"/><Context docBase="MVCPractice" path="/MVCPractice" reloadable="true" source="org.eclipse.jst.jee.server:MVCPractice"/><Context docBase="Model2App" path="/" reloadable="true" source="org.eclipse.jst.jee.server:Model2App"/></Host>
+				<Context docBase="MVCFrameWork" path="/MVCFrameWork" reloadable="true" source="org.eclipse.jst.jee.server:MVCFrameWork"/>
+				<Context docBase="Model2App" path="/" reloadable="true" source="org.eclipse.jst.jee.server:Model2App"/>
+			<Context docBase="WebMVC" path="/WebMVC" reloadable="true" source="org.eclipse.jst.jee.server:WebMVC"/></Host>
 		</Engine>
 	</Service>
 </Server>

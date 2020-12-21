@@ -1,5 +1,5 @@
 <%@page import="com.webapp1216.board.model.Notice"%>
-<%@page import="common.board.Pager"%>
+<%@page import="common.notice.Pager"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
