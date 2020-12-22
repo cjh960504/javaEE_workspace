@@ -1,4 +1,4 @@
-<%@page import="com.webmvc.notice.domain.Notice"%>
+<%@page import="com.webmvc.domain.Notice"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
 	Notice notice = (Notice)request.getAttribute("notice");
@@ -45,6 +45,14 @@ input[type=button]:hover {
 img{
 width:100%
 }
+
+#reply-box{
+overflow:hidden;
+}
+
+#reply-box p{
+float:left;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -77,6 +85,20 @@ function del() {
 		location.href="/notice/delete.do?notice_id=<%=notice.getNotice_id()%>";
 	}
 }
+
+function registComment() {
+	$.ajax({
+		url:"/comment/regist.do",
+		type:"post",
+		data:({
+			msg:$("input[name='msg']").val(),
+			author:$("input[name='author']").val(),
+			notice_id:$("input[name='notice_id']").val()
+		}),
+		success:(function (result) {
+		})
+	});
+}
 </script>
 </head>
 <body>
@@ -91,6 +113,16 @@ function del() {
     <input type="button" value="삭제">
     <input type="button" value="목록보기" onClick="location.href='/notice/list.do'">
   </form>
+</div>
+<div>
+	<input type="text" name="msg" placeholder="댓글내용입력.." style="width:70%">
+	<input type="text" name="author" placeholder="작성자이름.." style="width:20%">
+	<button type="button" id="reply_regist" onClick="registComment()">댓글등록</button>
+</div>
+<div id="reply-box">
+		<p style="width:75%">댓글내용</p>
+		<p style="width:10%">작성자</p>
+		<p style="width:10%">2012-12-21</p>
 </div>
 </body>
 </html>

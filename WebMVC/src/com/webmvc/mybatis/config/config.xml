@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 <typeAliases>
-	<typeAlias type="com.webmvc.notice.domain.Notice" alias="Notice"/>
+	<typeAlias type="com.webmvc.domain.Notice" alias="Notice"/>
+	<typeAlias type="com.webmvc.domain.Comment" alias="Comment"/>
 </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -16,5 +17,6 @@
   </environments>
   <mappers>
     <mapper resource="com/webmvc/mybatis/mappers/NoticeMapper.xml"/>
+    <mapper resource="com/webmvc/mybatis/mappers/CommentMapper.xml"/>
   </mappers>
 </configuration>

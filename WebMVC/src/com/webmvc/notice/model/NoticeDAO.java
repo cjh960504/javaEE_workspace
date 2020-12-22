@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.webmvc.domain.Notice;
 import com.webmvc.mybatis.config.MybatisConfigManager;
-import com.webmvc.notice.domain.Notice;
 
 public class NoticeDAO {
 	MybatisConfigManager manager = MybatisConfigManager.getInstance();

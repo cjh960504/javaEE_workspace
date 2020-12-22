@@ -112,8 +112,8 @@
 				<Context docBase="ServletApp" path="/ServletApp" reloadable="true" source="org.eclipse.jst.jee.server:ServletApp"/>
 				<Context docBase="webapp1216" path="/webapp1216" reloadable="true" source="org.eclipse.jst.jee.server:webapp1216"/>
 				<Context docBase="MVCFrameWork" path="/MVCFrameWork" reloadable="true" source="org.eclipse.jst.jee.server:MVCFrameWork"/>
-				<Context docBase="Model2App" path="/" reloadable="true" source="org.eclipse.jst.jee.server:Model2App"/>
-			<Context docBase="WebMVC" path="/WebMVC" reloadable="true" source="org.eclipse.jst.jee.server:WebMVC"/></Host>
+				<Context docBase="Model2App" path="/Model2App" reloadable="true" source="org.eclipse.jst.jee.server:Model2App"/>
+			<Context docBase="WebMVC" path="/WebMVC" reloadable="true" source="org.eclipse.jst.jee.server:WebMVC"/><Context docBase="SpringMVC1222" path="/" reloadable="true" source="org.eclipse.jst.jee.server:SpringMVC1222"/></Host>
 		</Engine>
 	</Service>
 </Server>

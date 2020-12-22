@@ -1,4 +1,4 @@
-package com.webmvc.notice.domain;
+package com.model2.domain;
 
 public class Notice {
 	private int notice_id;

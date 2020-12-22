@@ -1,4 +1,4 @@
-<%@page import="com.webmvc.notice.domain.Notice"%>
+<%@page import="com.webmvc.domain.Notice"%>
 <%@page import="common.notice.Pager"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=utf-8"%>

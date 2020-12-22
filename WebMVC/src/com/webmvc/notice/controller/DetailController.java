@@ -3,7 +3,7 @@ package com.webmvc.notice.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.webmvc.notice.domain.Notice;
+import com.webmvc.domain.Notice;
 import com.webmvc.notice.model.NoticeDAO;
 
 public class DetailController implements Controller{
