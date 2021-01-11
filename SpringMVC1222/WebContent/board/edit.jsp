@@ -1,6 +1,7 @@
 <%@page import="com.model2.domain.Board"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%
+	request.setCharacterEncoding("utf-8");
 	int result = (Integer)request.getAttribute("result"); //수정결과값
 	Board board = (Board)request.getAttribute("board");
 	
@@ -12,7 +13,7 @@
 		sb.append("history.back();");
 	}else{
 		sb.append("alert('수정성공');");
-		sb.append("location.href='/board/detail.do?board_id="+board.getBoard_id()+"';");
+		sb.append("location.href='/board/detail?board_id="+board.getBoard_id()+"';");
 	}
 	sb.append("</script>");
 	

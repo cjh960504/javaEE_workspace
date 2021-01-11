@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
 	//정말로 포워딩이 요청을 유지햇는지 테스트해보자!!
+	request.setCharacterEncoding("utf-8");
 	Board board =(Board)request.getAttribute("board");
 	out.print("요청객체에 담겨진 board는 "+ board);
 		
@@ -58,17 +59,28 @@ $(function(){
 	$($("input[type='button']")[0]).click(function(){ //수정버튼
 		edit();//동기방식으로 요청하겠다
 	});
-	
+	$($("input[type='button']")[1]).click(function(){ //수정버튼
+		del();//동기방식으로 요청하겠다
+	});
 	getCommentList(); //댓글 목록 비동기로 가져오기!!!
 });
 //글등록 요청
 function edit(){
 	$("form").attr({
-		action:"/board/edit.do",
+		action:"/board/edit",
 		method:"post"
 	});		
 	$("form").submit();
 }
+//글 삭제 요청
+function del() {
+	$("form").attr({
+		action:"/board/delete",
+		method:"get"
+	});
+	$("form").submit();
+}
+
 //댓글 목록 가져오기 
 function getCommentList(){
 	$.ajax({
@@ -138,7 +150,7 @@ function registComment(){
     
     <input type="button" value="글수정">
     <input type="button" value="글삭제">
-    <input type="button" value="목록보기" onClick="location.href='/board/list.do'">
+    <input type="button" value="목록보기" onClick="location.href='/board/list'">
 	<div class="reply-box">
 		<input type="text" name="msg" placeholder="댓글 입력.." style="width:75%">
 		<input type="text" name="author" placeholder="작성자 입력.." style="width:15%">

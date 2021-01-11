@@ -16,6 +16,9 @@
 				<prop key="/hello">testController</prop>
 				<prop key="/board/list">listController</prop>
 				<prop key="/board/regist">registController</prop>
+				<prop key="/board/edit">editController</prop>
+				<prop key="/board/detail">detailController</prop>
+				<prop key="/board/delete">deleteController</prop>
 			</props>
 		</property>
 	</bean>
@@ -23,6 +26,9 @@
 	<bean id="testController" class="com.springmvc.test.controller.TestController"/>
 	<bean id="listController" class="com.springmvc.board.controller.ListController"/>
 	<bean id="registController" class="com.springmvc.board.controller.RegistController"/>
+	<bean id="detailController" class="com.springmvc.board.controller.DetailController"/>
+	<bean id="editController" class="com.springmvc.board.controller.EditController"/>
+	<bean id="deleteController" class="com.springmvc.board.controller.DeleteController"/>
 	<!-- 뷰 매핑 
 	접두어와 접미어를 뺀 나머지를 키값으로 재활용하자((/) test/result (.jsp))
 	뷰 해결자 객체로 해결
